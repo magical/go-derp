@@ -288,8 +288,8 @@ func S() *node {
 	s := &node{ty: alt}
 	s.a = &node{ty: term, t: '1'}
 	s.b = &node{ty: cat,
-		//a: s,
-		a: &node{ty: term, t: '1'},
+		a: s,
+		//a: &node{ty: term, t: '1'},
 		b: &node{ty: cat,
 			a: &node{ty: term, t: '+'},
 			b: s}}

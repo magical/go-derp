@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	g, ok := derp.Parse(derp.S(), os.Args[1])
+	g, ok := derp.Match(derp.S(), os.Args[1])
 	fmt.Println(ok)
 
 	f, err := os.Create("out.dot")

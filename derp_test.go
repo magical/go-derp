@@ -57,13 +57,13 @@ func TestIsNull(t *testing.T) {
 }
 
 func TestPathological(t *testing.T) {
-	t.Skip("blah")
+	t.Skip("exponential")
 	goodString := strings.Repeat("1+", 100) + "1"
 	badString := strings.Repeat("1+", 100)
-	if _, ok := Parse(S(), goodString); !ok {
+	if _, ok := Match(S(), goodString); !ok {
 		t.Errorf("failed to recognize goodString")
 	}
-	if _, ok := Parse(S(), badString); ok {
+	if _, ok := Match(S(), badString); ok {
 		t.Errorf("failed to reject badString")
 	}
 }
