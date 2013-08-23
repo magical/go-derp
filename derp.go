@@ -318,7 +318,7 @@ func Match(g *node, s string) (*node, bool) {
 		gg = g
 		sz := size(g)
 		g = compact(g)
-		fmt.Println(sz, size(g), g.ty)
+		fmt.Println(sz, size(g), g.ty, walk, walkempty)
 	}
 	return gg, nullable(g)
 }
