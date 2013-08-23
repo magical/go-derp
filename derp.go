@@ -106,6 +106,10 @@ func _compact(g *node) *node {
 		g.memo = &node{ty: null}
 		return g.memo
 	}
+	if isempty(g) {
+		g.memo = &node{ty: empty}
+		return g.memo
+	}
 	switch g.ty {
 	case alt:
 		if isnull(g.a) {
