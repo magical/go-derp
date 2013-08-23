@@ -10,7 +10,6 @@ var dotnum uint32
 // Dot writes out a grammar as a DOT file.
 func Dot(g *node, w io.Writer) {
 	fmt.Fprintln(w, "digraph {")
-	fmt.Fprintln(w, "\tcenter=true;")
 	fmt.Fprintln(w, "\troot [shape=doublecircle];")
 	fmt.Fprintln(w, "\troot -> g1;")
 	walk++
@@ -36,8 +35,8 @@ func dotwalk(g *node, w io.Writer) {
 	case alt:
 		dotwalk(g.a, w)
 		dotwalk(g.b, w)
-		fmt.Fprintf(w, "\t%s -> %s [label=a];\n", g.name, g.a.name)
-		fmt.Fprintf(w, "\t%s -> %s [label=b];\n", g.name, g.b.name)
+		fmt.Fprintf(w, "\t%s -> %s [taillabel=a];\n", g.name, g.a.name)
+		fmt.Fprintf(w, "\t%s -> %s [taillabel=b];\n", g.name, g.b.name)
 		fmt.Fprintf(w, "\t%s [label=alt];\n", g.name)
 	case cat:
 		dotwalk(g.a, w)
