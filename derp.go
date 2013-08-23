@@ -37,8 +37,8 @@ const (
 // D empty = null
 // D term(t) = if token == t then empty else null
 // D alt(a, b) = alt(D a, D b)
-// D cat(a, b) = if nullable(a) then alt(cat(D a, b), cat(a, D b))
-//                              else cat(D a, b)
+// D cat(a, b) = if nullable(a) then alt(cat(D a, b), D b)
+//                              else     cat(D a, b)
 func deriv(g *node, token int) *node {
 	walk++
 	return _deriv(g, token)
@@ -69,9 +69,7 @@ func _deriv(g *node, token int) *node {
 			g.memo.a = &node{ty: cat}
 			g.memo.a.a = _deriv(g.a, token)
 			g.memo.a.b = g.b
-			g.memo.b = &node{ty: cat}
-			g.memo.b.a = g.a
-			g.memo.b.b = _deriv(g.b, token)
+			g.memo.b = _deriv(g.b, token)
 		} else {
 			g.memo = &node{ty: cat}
 			g.memo.a = _deriv(g.a, token)
