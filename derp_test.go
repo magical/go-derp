@@ -57,7 +57,6 @@ func TestIsNull(t *testing.T) {
 }
 
 func TestPathological(t *testing.T) {
-	t.Skip("exponential")
 	goodString := strings.Repeat("1+", 100) + "1"
 	badString := strings.Repeat("1+", 100)
 	if _, ok := Match(S(), goodString); !ok {
