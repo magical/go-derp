@@ -247,16 +247,20 @@ func _nullable(g *node) bool {
 		return false
 	case alt:
 		if g.walkempty == walkempty {
-			return false
+			return g.empty
 		}
 		g.walkempty = walkempty
-		return _nullable(g.a) || _nullable(g.b)
+		g.empty = false
+		g.empty = _nullable(g.a) || _nullable(g.b)
+		return g.empty
 	case cat:
 		if g.walkempty == walkempty {
-			return false
+			return g.empty
 		}
 		g.walkempty = walkempty
-		return _nullable(g.a) && _nullable(g.b)
+		g.empty = false
+		g.empty = _nullable(g.a) && _nullable(g.b)
+		return g.empty
 	default:
 		panic("unreachable")
 	}
